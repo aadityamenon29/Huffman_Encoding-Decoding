@@ -109,4 +109,29 @@ public class binaryHeap {
 
 		}
 	}
+	public void level_order_print(pairingHeapNode root)
+	{
+		Queue<pairingHeapNode> q = new LinkedList<pairingHeapNode>();
+		q.add(root);
+		pairingHeapNode temp;
+		int size;
+		int j = 0;
+		while(!q.isEmpty())
+		{
+			size = q.size();
+			j=0;
+			while(j<size){
+				temp = q.poll();
+				if(temp!=null){
+					System.out.print("frequency is : "+temp.val);
+					q.add(temp.left);
+					q.add(temp.right);}
+				else
+					System.out.print("null");
+				j++;
+			}
+			System.out.println();
+
+		}
+	}
 }
