@@ -13,11 +13,10 @@ public class binaryHeap {
 		{
 			if(hm[i]!=0)
 			{
-				System.out.println(hm[i]+" "+i);
 				al.add(new TreeNode(hm[i],i)); 
 			}
 		}
-		System.out.println();
+		
 		build_min_heap(al);
 		//keep removing 2 minimums, combining and adding it back to the queue till only one tree is left.
 		while(al.size()!=1)
@@ -27,7 +26,7 @@ public class binaryHeap {
 			tc = combine(t1,t2);
 			insert(al,tc);
 		}
-		level_order_print(al.get(0));
+		//level_order_print(al.get(0));
 	}
 
 	public void min_heapify(ArrayList<TreeNode> A, int i)
@@ -40,6 +39,7 @@ public class binaryHeap {
 		else smallest = i;
 		if(right_child<A.size() && (A.get(right_child)).val<(A.get(smallest)).val)
 			smallest = right_child;
+		
 		if(smallest!=i)
 		{
 			Collections.swap(A, i, smallest);
@@ -98,13 +98,11 @@ public class binaryHeap {
 			while(j<size){
 				temp = q.poll();
 				if(temp!=null){
-					System.out.print("frequency is : "+temp.val+"and element is : "+temp.element);
-					//if(temp.left!=null)
+					System.out.print("frequency is : "+temp.val);
 					q.add(temp.left);
-					//if(temp.right!=null)
 					q.add(temp.right);}
 				else
-					System.out.println("null");
+					System.out.print("null");
 				j++;
 			}
 			System.out.println();

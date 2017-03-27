@@ -4,6 +4,7 @@ import java.util.*;
 public class test_DS {
 	public static void main(String[] args) {
 		binaryHeap obj = new binaryHeap();
+		fourWayHeap obj2 = new fourWayHeap();
 		Scanner scanner;
 		int[] freq_table = new int[1000000];
 
@@ -16,7 +17,15 @@ public class test_DS {
 				freq_table[temp]++;
 
 			}
-			obj.usingBinaryHeap(freq_table);
+			long start_time = System.currentTimeMillis();
+			for(int i =0;i<100;i++)
+				obj.usingBinaryHeap(freq_table);
+			System.out.println(((System.currentTimeMillis()-start_time))+" = time to make 100 huffman trees using binary heap ");
+			start_time = System.currentTimeMillis();
+			for(int i =0;i<100;i++)			
+				obj2.usingFourWayHeap(freq_table);
+			System.out.println(((System.currentTimeMillis()-start_time))+" = time to make 100 huffman trees using binary heap");
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}	
