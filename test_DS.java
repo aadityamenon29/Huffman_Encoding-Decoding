@@ -5,18 +5,16 @@ public class test_DS {
 	public static void main(String[] args) {
 		test_DS obj = new test_DS();
 		Scanner scanner;
-		int i = 0;
-		HashMap<Integer,Integer> freq_table = new HashMap<Integer,Integer>();
+		int[] freq_table = new int[1000000];
+
 		try {
 			scanner = new Scanner(new File("A:\\Spring 2017\\ADS\\sample1\\sample_input_small.txt"));
 			int temp;
 			while(scanner.hasNextInt())
 			{
 				temp = scanner.nextInt();
-				if(!freq_table.containsKey(temp))
-					freq_table.put(temp, 1);
-				else
-					freq_table.put(temp, freq_table.get(temp)+1);
+				freq_table[temp]++;
+				
 			}
 			obj.usingBinaryHeap(freq_table);
 		} catch (FileNotFoundException e) {
@@ -24,17 +22,21 @@ public class test_DS {
 		}	
 	}
 
-	public void usingBinaryHeap(HashMap<Integer,Integer> hm)
+	public void usingBinaryHeap(int[] hm)
 	{
 		ArrayList<TreeNode> al = new ArrayList<TreeNode>();
 		TreeNode t1,t2,tc;
-		for (Map.Entry<Integer, Integer> entry : hm.entrySet()) 
+		for (int i =0;i<hm.length;i++) 
 		{
-			System.out.println(entry.getKey()+" "+entry.getValue());
-			al.add(new TreeNode(entry.getValue(),entry.getKey())); 
+			if(hm[i]!=0)
+			{
+				System.out.println(hm[i]+" "+i);
+				al.add(new TreeNode(hm[i],i)); 
+			}
 		}
 		System.out.println();
 		build_min_heap(al);
+		//keep removing 2 minimums, combining and adding it back to the queue till only one tree is left.
 		while(al.size()!=1)
 		{
 			t1 = remove_min(al);
@@ -42,7 +44,7 @@ public class test_DS {
 			tc = combine(t1,t2);
 			insert(al,tc);
 		}
-		//level_order_print(al.get(0));
+		level_order_print(al.get(0));
 	}
 
 	public void min_heapify(ArrayList<TreeNode> A, int i)
@@ -120,8 +122,6 @@ public class test_DS {
 					q.add(temp.right);}
 				else
 					System.out.println("null");
-
-
 				j++;
 			}
 			System.out.println();
