@@ -27,6 +27,8 @@ public class fourWayHeap {
 			tc = combine(t1,t2);
 			insert(al,tc);
 		}
+		codebook cb = new codebook();
+		cb.build(al.get(3));
 		//object.level_order_print(al.get(3));
 	}
 
