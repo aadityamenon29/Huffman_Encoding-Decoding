@@ -1,9 +1,8 @@
 import java.util.*;
 public class fourWayHeap {
 	
-	public void usingFourWayHeap(int[] hm)
+	public TreeNode usingFourWayHeap(int[] hm)
 	{
-		binaryHeap object = new binaryHeap();
 		ArrayList<TreeNode> al = new ArrayList<TreeNode>();
 		al.add(null);
 		al.add(null);
@@ -27,9 +26,11 @@ public class fourWayHeap {
 			tc = combine(t1,t2);
 			insert(al,tc);
 		}
-		codebook cb = new codebook();
-		cb.build(al.get(3));
-		//object.level_order_print(al.get(3));
+		/*Uncomment the following lines if you need to run test_DS and cross-check code table formation*/
+		
+//		Encoder cb = new Encoder();
+//		cb.build(al.get(3));
+		return al.get(3);
 	}
 
 	public void min_heapify(ArrayList<TreeNode> A, int i)
