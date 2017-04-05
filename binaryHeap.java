@@ -9,6 +9,7 @@ public class binaryHeap {
 	{
 		ArrayList<TreeNode> al = new ArrayList<TreeNode>();
 		TreeNode t1,t2,tc;
+		//initialize heap
 		for (int i =0;i<hm.length;i++) 
 		{
 			if(hm[i]!=0)
@@ -34,6 +35,7 @@ public class binaryHeap {
 		int smallest;
 		int left_child = (2*i)+1;
 		int right_child = (2*i)+2;
+		//find smallest amongst children and parent
 		if(left_child<A.size() && (A.get(left_child)).val<=(A.get(i)).val)
 			smallest = left_child;
 		else smallest = i;
@@ -42,6 +44,7 @@ public class binaryHeap {
 		
 		if(smallest!=i)
 		{
+			//get smallest to the parent
 			Collections.swap(A, i, smallest);
 			min_heapify(A, smallest);
 		}
@@ -57,6 +60,7 @@ public class binaryHeap {
 
 	public TreeNode remove_min(ArrayList<TreeNode> A)
 	{
+		//replace root with last node, delete last node, heapify root
 		TreeNode min = A.get(0);
 		A.set(0, A.get(A.size()-1));
 		A.remove(A.size()-1);
@@ -67,6 +71,7 @@ public class binaryHeap {
 
 	public void insert(ArrayList<TreeNode> A,TreeNode node)
 	{
+		//insert new node at the end. keep swapping with parent until condition break
 		A.add(node);
 		int i = A.size()-1;
 		while(i>0 && A.get(i-1/2).val>A.get(i).val)
@@ -78,12 +83,14 @@ public class binaryHeap {
 
 	public TreeNode combine(TreeNode t1, TreeNode t2)
 	{
+		//create new node and set its value (frequency) to the sum of the children
 		TreeNode newNode = new TreeNode(t1.val+t2.val);
 		newNode.left = t1;
 		newNode.right = t2;
 		return newNode;
 	}
 
+	//utility function to check if huffman tree created is correct by checking the level order traversal.
 	public void level_order_print(TreeNode root)
 	{
 		Queue<TreeNode> q = new LinkedList<TreeNode>();
@@ -98,7 +105,7 @@ public class binaryHeap {
 			while(j<size){
 				temp = q.poll();
 				if(temp!=null){
-					System.out.print("frequency is : "+temp.val);
+					System.out.print("frequency is : "+temp.element);
 					q.add(temp.left);
 					q.add(temp.right);}
 				else
@@ -109,6 +116,8 @@ public class binaryHeap {
 
 		}
 	}
+	
+	////utility function to check if huffman tree created is correct by checking the level order traversal.
 	public void level_order_print(pairingHeapNode root)
 	{
 		Queue<pairingHeapNode> q = new LinkedList<pairingHeapNode>();

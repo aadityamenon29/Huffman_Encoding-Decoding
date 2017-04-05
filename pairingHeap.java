@@ -2,7 +2,8 @@ import java.util.ArrayList;
 public class pairingHeap {
 	pairingHeapNode min = null;
 	public void usingPairingHeap(int[] hm) {
-		binaryHeap object = new binaryHeap();
+		
+		//binaryHeap object = new binaryHeap();
 		pairingHeapNode t1, t2, tc;
 		int flag = 1;
 		// initialize pairing heap
@@ -19,26 +20,28 @@ public class pairingHeap {
 		}
 		// build huffman tree
 		while (min.children.size() != 0) {
+			//remove 2 mins, combine and insert back to the tree
 			t1 = min;
 			removeMin();
 			t2 = min;
 			removeMin();
 			tc = combine(t1, t2);
 			insert(tc);
-//			for (int j = 0; j < min.children.size(); j++) {
-//			}
 		}
 		// object.level_order_print(min);
 	}
 	public void insert(pairingHeapNode temp) {
+		//if null, make the temp the only node
 		if (min == null)
 			min = temp;
+		//else, make the smaller one the parent
 		else if (temp.val <= min.val) {
 			temp.children.add(min);
 			min = temp;
 		} else
 			min.children.add(temp);
 	}
+	
 	public void removeMin() {
 		int no_of_children = min.children.size();
 		pairingHeapNode extra;
@@ -47,6 +50,7 @@ public class pairingHeap {
 			min = null;
 		if (no_of_children == 1)
 			min = min.children.get(0);
+		
 		else if (no_of_children == 2) {
 			if (min.children.get(0).val < min.children.get(1).val) {
 				extra = min.children.get(1);
@@ -57,11 +61,14 @@ public class pairingHeap {
 				min = min.children.get(1);
 				min.children.add(extra);
 			}
-		} else if (no_of_children > 2) {
+		} 
+		
+		else if (no_of_children > 2) {
 			pairingHeapNode a, b;
 			int size = min.children.size();
 			ArrayList<pairingHeapNode> list = new ArrayList<pairingHeapNode>();
 			int counter = 0;
+			//pass 1
 			while (counter < size) {
 				a = min.children.get(0);
 				b = min.children.get(1);
@@ -77,12 +84,14 @@ public class pairingHeap {
 			}
 			list = min.children;
 			min = list.get(0);
+			//pass 2
 			for (int i = 1; i < list.size(); i++) {
 				insert(list.get(i));
 			}
 		}
 	}
 	public void insert(pairingHeapNode a, pairingHeapNode b) {
+		//make the smaller one the parent and the bigger one is the child
 		if (a.val <= b.val) {
 			a.children.add(b);
 			min.children.add(a);
@@ -93,6 +102,8 @@ public class pairingHeap {
 		}
 	}
 	public pairingHeapNode combine(pairingHeapNode temp1, pairingHeapNode temp2) {
+		//make new node and initialize left and right child
+		
 		pairingHeapNode newNode = new pairingHeapNode(temp1.val + temp2.val);
 		newNode.left = temp1;
 		newNode.right = temp2;
