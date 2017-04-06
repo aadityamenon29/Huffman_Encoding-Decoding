@@ -54,6 +54,7 @@ public class encoder {
 			    }
 			    bitcounter--;
 			}
+			//System.out.println(bitSet.size());
 			//convert bitset to byte array
 			byte[] encoded_byte_array = bitSet.toByteArray();
 			int p = 0;

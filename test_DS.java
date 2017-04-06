@@ -25,7 +25,7 @@ public class test_DS {
 			start_time = System.currentTimeMillis();
 			for(int i =0;i<10;i++)			
 				obj2.usingFourWayHeap(freq_table);
-			System.out.println((((System.currentTimeMillis()-start_time))/10)+" = time to make 100 huffman tree using 4-way heap");
+			System.out.println((((System.currentTimeMillis()-start_time))/10)+" = time to make huffman tree using 4-way heap");
 			
 			start_time = System.currentTimeMillis();
 			for(int i =0;i<5;i++)	{

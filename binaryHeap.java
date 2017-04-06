@@ -74,7 +74,7 @@ public class binaryHeap {
 		//insert new node at the end. keep swapping with parent until condition break
 		A.add(node);
 		int i = A.size()-1;
-		while(i>0 && A.get(i-1/2).val>A.get(i).val)
+		while(i>0 && A.get((i-1)/2).val>A.get(i).val)
 		{
 			Collections.swap(A, i, (i-1)/2);
 			i = (i-1)/2;
